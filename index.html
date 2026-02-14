@@ -10,6 +10,7 @@
 
     <header>
         <button id="settings-btn" onclick="toggleSettings()">⚙️</button>
+        
         <h1>Readify<span>ELA</span></h1>
         <p style="color: #888; margin-top: -10px;">Literacy & Language Tools</p>
         
@@ -19,25 +20,25 @@
         </div>
     </header>
 
-    <main id="game-grid" class="grid-container"></main>
-
     <div id="settings-modal" class="hidden">
         <div class="settings-content">
             <h2>Settings</h2>
             <hr>
             <h3>Panic Key</h3>
-            <input type="text" id="panic-key" placeholder="Key (e.g. Escape)">
-            <input type="text" id="panic-url" placeholder="Redirect (https://...)">
+            <input type="text" id="panic-key" placeholder="Key (e.g. q)">
+            <input type="text" id="panic-url" placeholder="Link (e.g. google.com)">
             
             <h3>Tab Cloak</h3>
             <input type="text" id="tab-cloak-name" placeholder="New Tab Name" oninput="changeTabName(this.value)">
             
-            <button onclick="toggleSettings()" style="margin-top: 20px; background: #ff4444; color: white;">Close</button>
+            <button onclick="toggleSettings()" style="margin-top: 20px; background: #ff4444; color: white; border: none; padding: 10px; border-radius: 5px;">Close</button>
         </div>
     </div>
 
+    <main id="game-grid" class="grid-container"></main>
+
     <div id="game-overlay" class="hidden">
-        <button id="close-btn">Close Game</button>
+        <button id="close-btn" onclick="closeGame()">Close Game</button>
         <iframe id="game-frame" src="" frameborder="0"></iframe>
     </div>
 
