@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watermelon Games</title>
+    <title id="tab-title">Watermelon Games</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-mode">
 
     <header>
+        <button id="settings-btn" onclick="toggleSettings()">⚙️</button>
         <h1>Watermelon <span>Games</span></h1>
         <p style="color: #888; margin-top: -10px;">By Damoni</p>
         
@@ -17,6 +18,21 @@
             <button id="mode-toggle" onclick="toggleMode()">🌙</button>
         </div>
     </header>
+
+    <div id="settings-modal" class="hidden">
+        <div class="settings-content">
+            <h2>Settings</h2>
+            <hr>
+            <h3>Panic Key</h3>
+            <input type="text" id="panic-key" placeholder="Key (e.g. Escape)" maxlength="15">
+            <input type="text" id="panic-url" placeholder="Redirect URL (https://...)">
+            
+            <h3>Tab Cloak</h3>
+            <input type="text" id="tab-cloak-name" placeholder="New Tab Name" oninput="changeTabName(this.value)">
+            
+            <button onclick="toggleSettings()" style="margin-top: 20px; background: #ff4444;">Close</button>
+        </div>
+    </div>
 
     <main id="game-grid" class="grid-container">
         </main>
