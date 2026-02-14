@@ -6,11 +6,16 @@
     <title>Watermelon Games</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-mode">
 
     <header>
         <h1>Watermelon <span>Games</span></h1>
         <p style="color: #888; margin-top: -10px;">By Damoni</p>
+        
+        <div class="controls">
+            <input type="text" id="searchBar" placeholder="Search games..." onkeyup="filterGames()">
+            <button id="mode-toggle" onclick="toggleMode()">🌙</button>
+        </div>
     </header>
 
     <main id="game-grid" class="grid-container">
