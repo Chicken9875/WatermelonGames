@@ -1,42 +1,46 @@
-.hidden { display: none !important; }
-
-#game-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #000;
-    z-index: 10000;
+/* Status Tags */
+.status-tag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #ff4444; /* Red for offline */
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
-.overlay-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.status-tag.online {
+    background: #00ff88; /* Green for online */
 }
 
-.overlay-header {
+/* Offline Card Style */
+.game-card.offline {
+    opacity: 0.6;
+    border-color: #444;
+}
+
+.game-card.offline:hover {
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+    border-color: #ff4444;
+}
+
+/* Base Grid Style */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.game-card {
+    position: relative;
     background: #1a1a1a;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-
-#game-frame {
-    flex-grow: 1;
-    border: none;
-    width: 100%;
-    height: 100%;
-}
-
-.exit-btn, .util-btn {
-    background: #333;
-    color: #fff;
-    border: 1px solid #444;
-    padding: 8px 15px;
-    border-radius: 5px;
+    border: 2px solid #333;
+    padding: 40px 10px;
+    border-radius: 12px;
     cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
 }
-
-.exit-btn:hover { background: #ff4444; }
