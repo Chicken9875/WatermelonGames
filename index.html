@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReadifyELA | Literacy Resources</title>
+    <title>ReadifyELA | Research Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
+    <div class="search-wrapper">
         <h1>ReadifyELA</h1>
-        <p>Advanced Language & Literacy Tools</p>
-        <div class="search-container">
-            <input type="text" id="searchBar" placeholder="Search resources..." onkeyup="filterGames()">
+        <p>Database Search & Academic Web Access</p>
+        
+        <div class="search-box">
+            <input type="text" id="url-input" placeholder="Enter URL or search query...">
+            <button onclick="launchProxy()">Search</button>
         </div>
-    </header>
 
-    <main id="game-grid" class="grid-container">
-        </main>
-
-    <div id="game-overlay" class="hidden">
-        <div class="overlay-content">
-            <button class="close-btn" onclick="closeGame()">× Close</button>
-            <iframe id="game-frame" src=""></iframe>
+        <div class="server-status">
+            <span class="dot"></span> Research Server: <span id="status-text">Online</span>
         </div>
     </div>
 
