@@ -1,24 +1,17 @@
 const gameGrid = document.getElementById('game-grid');
 
-// 1. Fetch Games from games.json
+// 1. Fetch Games
 fetch('games.json')
     .then(response => response.json())
     .then(games => {
-        window.allGames = games; // Save for search filtering
+        window.allGames = games;
         displayGames(games);
     })
     .catch(err => console.error("Error loading games:", err));
 
-// 2. Display Games as "Cool Buttons" (No Images)
+// 2. Display "Cool Buttons"
 function displayGames(games) {
     gameGrid.innerHTML = '';
-    
-    // Update the Game Count display
-    const countDisplay = document.getElementById('game-count');
-    if (countDisplay) {
-        countDisplay.innerText = `${games.length} Resources Available`;
-    }
-
     games.forEach(game => {
         const card = document.createElement('div');
         card.className = 'game-card';
@@ -28,78 +21,38 @@ function displayGames(games) {
     });
 }
 
-// 3. Settings Menu Toggle
-function toggleSettings() {
-    const modal = document.getElementById('settings-modal');
-    modal.classList.toggle('hidden');
-}
-
-// 4. Tab Cloak: Changes the text in the browser tab
-function changeTabName(name) {
-    document.title = name || "ReadifyELA";
-}
-
-// 5. Panic Key Logic: Instantly redirects to a safe site
-window.addEventListener('keydown', function(e) {
-    const key = document.getElementById('panic-key').value;
-    const url = document.getElementById('panic-url').value;
-    if (key && e.key === key) {
-        window.location.href = url.startsWith('http') ? url : "https://" + (url || "google.com");
-    }
-});
-
-// 6. Game Player Logic
+// 3. The "Launch" Fix
 function openGame(url) {
-    const frame = document.getElementById('game-frame');
     const overlay = document.getElementById('game-overlay');
+    const frame = document.getElementById('game-frame');
     
-    frame.src = url;
+    // Show the overlay
     overlay.classList.remove('hidden');
+    
+    // Set the source
+    frame.src = url;
+
+    // Check if the game is failing to load (common with proxies)
+    frame.onerror = function() {
+        alert("This game is being blocked by the school filter. Opening in Stealth Mode...");
+        window.open(url, '_blank');
+    };
 }
 
 function closeGame() {
+    document.getElementById('game-overlay').classList.add('hidden');
+    document.getElementById('game-frame').src = ""; // Stops audio
+}
+
+function fullscreenGame() {
     const frame = document.getElementById('game-frame');
-    const overlay = document.getElementById('game-overlay');
-    
-    overlay.classList.add('hidden');
-    frame.src = ""; // Stops game audio/loading immediately
+    if (frame.requestFullscreen) frame.requestFullscreen();
+    else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen(); // iPad support
 }
 
-// 7. Search Bar Filter
-function filterGames() {
-    const term = document.getElementById('searchBar').value.toLowerCase();
-    const filtered = window.allGames.filter(g => 
-        g.title.toLowerCase().includes(term)
-    );
-    displayGames(filtered);
-}
-
-// 8. ELA Research Proxy Logic
-function launchProxy() {
-    let url = document.getElementById('proxy-input').value.trim();
-    if (!url) {
-        alert("Please enter a URL to research.");
-        return;
+// 4. Tab Cloak & Panic Key
+window.addEventListener('keydown', (e) => {
+    if (e.key === "q") { // Set your panic key here
+        window.location.href = "https://classroom.google.com";
     }
-    
-    // Auto-fix URL formatting
-    if (!url.startsWith('http')) {
-        url = 'https://' + url;
-    }
-
-    // Tunneling via the Utopia Proxy Engine
-    const proxyUrl = "https://mehmetgayalo.southern.com.my/main/" + url;
-    
-    openGame(proxyUrl);
-    toggleSettings(); // Close menu to show the "Research"
-}
-
-// 9. Instant Classroom Cloak
-function instantCloak() {
-    document.title = "Google Classroom";
-    let link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-    link.type = 'image/x-icon';
-    link.rel = 'shortcut icon';
-    link.href = "https://ssl.gstatic.com/classroom/favicon.png";
-    document.getElementsByTagName('head')[0].appendChild(link);
-}
+});
