@@ -5,57 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReadifyELA | Literacy Resources</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="https://ssl.gstatic.com/classroom/favicon.png">
 </head>
 <body>
 
     <header>
-        <div class="header-left">
-            <h1>ReadifyELA</h1>
-            <p>Advanced Language & Literacy Tools</p>
-            <p id="game-count"></p>
-        </div>
-        <div class="header-right">
+        <h1>ReadifyELA</h1>
+        <p>Advanced Language & Literacy Tools</p>
+        <div class="search-container">
             <input type="text" id="searchBar" placeholder="Search resources..." onkeyup="filterGames()">
-            <button class="icon-btn" onclick="toggleSettings()">⚙️</button>
         </div>
     </header>
 
-    <main id="game-grid" class="grid-container"></main>
+    <main id="game-grid" class="grid-container">
+        </main>
 
     <div id="game-overlay" class="hidden">
         <div class="overlay-content">
-            <button class="close-btn" onclick="closeGame()">× Close Resource</button>
-            <iframe id="game-frame" src="" frameborder="0" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <div id="settings-modal" class="hidden">
-        <div class="settings-content">
-            <span class="close-settings" onclick="toggleSettings()">&times;</span>
-            <h2>Settings</h2>
-            
-            <div class="setting-item">
-                <h3>Tab Cloak</h3>
-                <input type="text" id="tab-name" placeholder="New Tab Name (e.g. My Drive)" onchange="changeTabName(this.value)">
-            </div>
-
-            <div class="setting-item">
-                <h3>Panic Key</h3>
-                <input type="text" id="panic-key" placeholder="Key (e.g. q)" maxlength="1">
-                <input type="text" id="panic-url" placeholder="Redirect URL (e.g. google.com)">
-            </div>
-
-            <div class="setting-item proxy-section">
-                <h3>ELA Research Proxy</h3>
-                <p>Tunnel through to external academic databases.</p>
-                <input type="text" id="proxy-input" placeholder="Enter URL (e.g. discord.com)">
-                <button onclick="launchProxy()" class="proxy-btn">Launch Proxy</button>
-            </div>
-
-            <div class="setting-item">
-                <button onclick="instantCloak()" class="cloak-btn">Instant Classroom Cloak</button>
-            </div>
+            <button class="close-btn" onclick="closeGame()">× Close</button>
+            <iframe id="game-frame" src=""></iframe>
         </div>
     </div>
 
